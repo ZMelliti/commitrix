@@ -1,18 +1,27 @@
 #!/usr/bin/env node
 const { program } = require('commander');
 const { lintCommit } = require('./linter');
+const { installHook } = require('./install-hook');
+
+program.version('0.1.0');
 
 program
-  .version('0.1.0')
-  .argument('<message>', 'commit message to lint')
+  .command('install')
+  .description('install git commit hook')
+  .action(installHook);
+
+program
+  .argument('[message]', 'commit message to lint')
   .action((message) => {
-    const result = lintCommit(message);
-    if (!result.valid) {
-      console.error('❌ Commit message issues:');
-      result.errors.forEach(error => console.error(`  • ${error}`));
-      process.exit(1);
+    if (message) {
+      const result = lintCommit(message);
+      if (!result.valid) {
+        console.error('❌ Commit message issues:');
+        result.errors.forEach(error => console.error(`  • ${error}`));
+        process.exit(1);
+      }
+      console.log('✅ Commit message looks good!');
     }
-    console.log('✅ Commit message looks good!');
   });
 
 program.parse();

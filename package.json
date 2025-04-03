@@ -7,7 +7,8 @@
     "commitrix": "./src/index.js"
   },
   "scripts": {
-    "test": "node test/test.js"
+    "test": "node test/test.js",
+    "install-hook": "node src/install-hook.js"
   },
   "keywords": ["git", "commit", "linter"],
   "author": "",
