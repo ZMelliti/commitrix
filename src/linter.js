@@ -1,14 +1,21 @@
-const SEMANTIC_PATTERN = /^(feat|fix|docs|style|refactor|test|chore)(\(.+\))?: .{1,50}/;
+const { loadConfig } = require('./config');
 
 function lintCommit(message) {
+  const config = loadConfig();
   const errors = [];
   
-  if (!SEMANTIC_PATTERN.test(message)) {
-    errors.push('Must follow format: type(scope): description');
+  const typePattern = new RegExp(`^(${config.types.join('|')})(\\(.+\\))?: .+`);
+  
+  if (!typePattern.test(message)) {
+    errors.push(`Must start with: ${config.types.join(', ')}`);
   }
   
-  if (message.length > 72) {
-    errors.push('Message too long (max 72 characters)');
+  if (message.length > config.maxLength) {
+    errors.push(`Message too long (max ${config.maxLength} characters)`);
+  }
+  
+  if (message.length < config.minLength) {
+    errors.push(`Message too short (min ${config.minLength} characters)`);
   }
   
   if (message.trim().length === 0) {

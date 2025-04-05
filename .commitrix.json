@@ -1,0 +1,5 @@
+{
+  "types": ["feat", "fix", "docs", "style", "refactor", "test", "chore", "build", "ci"],
+  "maxLength": 72,
+  "minLength": 8
+}
