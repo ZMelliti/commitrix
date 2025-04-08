@@ -3,7 +3,7 @@ const { program } = require('commander');
 const { lintCommit } = require('./linter');
 const { installHook } = require('./install-hook');
 
-program.version('0.1.0');
+program.version('0.2.0');
 
 program
   .command('install')
