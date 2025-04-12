@@ -2,13 +2,39 @@
 const { program } = require('commander');
 const { lintCommit } = require('./linter');
 const { installHook } = require('./install-hook');
+const { buildCommit } = require('./interactive');
+const { suggestFix } = require('./suggest');
+const { displayStats } = require('./stats');
 
-program.version('0.2.0');
+program.version('0.3.0');
 
 program
   .command('install')
   .description('install git commit hook')
   .action(installHook);
+
+program
+  .command('build')
+  .description('interactively build commit message')
+  .action(async () => {
+    const message = await buildCommit();
+    console.log('\n📝 Generated commit message:');
+    console.log(message);
+  });
+
+program
+  .command('suggest <message>')
+  .description('suggest fixes for commit message')
+  .action((message) => {
+    const suggestions = suggestFix(message);
+    console.log('💡 Suggested fixes:');
+    suggestions.forEach((s, i) => console.log(`  ${i + 1}. ${s}`));
+  });
+
+program
+  .command('stats')
+  .description('show commit statistics')
+  .action(displayStats);
 
 program
   .argument('[message]', 'commit message to lint')
@@ -18,6 +44,12 @@ program
       if (!result.valid) {
         console.error('❌ Commit message issues:');
         result.errors.forEach(error => console.error(`  • ${error}`));
+        
+        const suggestions = suggestFix(message);
+        if (suggestions.length > 0) {
+          console.log('\n💡 Suggested fix:');
+          console.log(`  ${suggestions[0]}`);
+        }
         process.exit(1);
       }
       console.log('✅ Commit message looks good!');
