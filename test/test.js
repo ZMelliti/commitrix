@@ -25,7 +25,8 @@ test('rejects invalid commits', () => {
 });
 
 test('rejects long commits', () => {
-  const result = lintCommit('feat: this is a very long commit message that exceeds the maximum length');
+  const longMessage = 'feat: ' + 'x'.repeat(70);
+  const result = lintCommit(longMessage);
   assert(!result.valid, 'Should reject long commit');
 });
 

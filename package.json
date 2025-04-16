@@ -8,11 +8,24 @@
   },
   "scripts": {
     "test": "node test/test.js",
-    "install-hook": "node src/install-hook.js"
+    "install-hook": "node src/install-hook.js",
+    "prepublishOnly": "npm test"
   },
   "keywords": ["git", "commit", "linter"],
   "author": "",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/username/commitrix.git"
+  },
+  "homepage": "https://github.com/username/commitrix#readme",
+  "bugs": {
+    "url": "https://github.com/username/commitrix/issues"
+  },
+  "files": ["src/", "README.md"],
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "dependencies": {
     "commander": "^11.0.0",
     "inquirer": "^9.0.0"
