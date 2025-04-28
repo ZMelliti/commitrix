@@ -1,16 +1,17 @@
 # Commitrix 🎯
 
-A lightweight Git commit quality linter that enforces semantic commit conventions and provides intelligent suggestions.
+A powerful Git commit quality linter that enforces semantic commit conventions with intelligent suggestions and team collaboration features.
 
 [![npm version](https://badge.fury.io/js/commitrix.svg)](https://www.npmjs.com/package/commitrix)
-[![CI](https://github.com/yourusername/commitrix/workflows/CI/badge.svg)](https://github.com/yourusername/commitrix/actions)
+[![CI](https://github.com/zmelliti/commitrix/workflows/CI/badge.svg)](https://github.com/zmelliti/commitrix/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## ✨ Features
 
 - 🔍 **Semantic Commit Validation** - Enforces conventional commit format
 - 🪝 **Git Hook Integration** - Automatic validation on commit
 - 🎨 **Interactive Builder** - Guided commit message creation
-- 💡 **Smart Suggestions** - AI-powered commit message fixes
+- 💡 **Smart Suggestions** - Intelligent commit message fixes
 - 📊 **Team Analytics** - Repository commit statistics
 - ⚙️ **Configurable Rules** - Customize for your team
 - 🚀 **CI/CD Ready** - Validate commits in pipelines
@@ -24,8 +25,24 @@ npm install -g commitrix
 # Initialize in your project
 commitrix init
 
-# Install git hooks
+# Install git hooks (auto-runs on npm install)
 commitrix install
+```
+
+## 🎥 Demo
+
+```bash
+# ❌ Invalid commit gets rejected
+$ git commit -m "fix bug"
+❌ Commit message issues:
+  • Must start with: feat, fix, docs, style, refactor, test, chore
+
+💡 Suggested fix:
+  fix: bug
+
+# ✅ Valid commit passes
+$ git commit -m "fix: resolve authentication timeout"
+✅ Commit message looks good!
 ```
 
 ## 📖 Usage
@@ -82,6 +99,27 @@ Add to your GitHub Actions workflow:
   run: npx commitrix validate --count 10
 ```
 
+## 🛠️ Development
+
+```bash
+# Clone repository
+git clone https://github.com/zmelliti/commitrix.git
+cd commitrix
+
+# Install dependencies
+npm install
+
+# Run tests
+npm test
+
+# Test locally
+node src/index.js "feat: test message"
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
 ## 📝 License
 
-MIT © [Your Name]
+MIT © [zmelliti](https://github.com/zmelliti)
