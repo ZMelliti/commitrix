@@ -24,7 +24,7 @@ Project maintainers are responsible for clarifying standards of acceptable behav
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at **conduct@[yourdomain].com**.  
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by **contacting the maintainers**.  
 All complaints will be reviewed and investigated promptly.
 
 ## Attribution
