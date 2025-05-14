@@ -89,6 +89,10 @@ Create `.commitrix.json` in your project root:
 | `commitrix stats` | Show commit statistics |
 | `commitrix suggest <message>` | Get suggestions |
 | `commitrix validate` | Validate recent commits |
+| `commitrix check` | Check project setup |
+| `commitrix config [key] [value]` | Show/set configuration |
+| `commitrix template --type <type>` | Generate commit template |
+| `commitrix history --count <n>` | Analyze commit history |
 
 ## 🏗️ CI/CD Integration
 

@@ -7,6 +7,10 @@ const { suggestFix } = require('./suggest');
 const { displayStats } = require('./stats');
 const { initProject } = require('./init');
 const { validateRepo } = require('./validate-repo');
+const { checkSetup } = require('./check');
+const { showConfig, setConfig } = require('./config-cmd');
+const { generateTemplate } = require('./template');
+const { analyzeHistory } = require('./history');
 
 program.version('0.3.0');
 
@@ -48,6 +52,33 @@ program
   .description('validate recent commits')
   .option('-n, --count <number>', 'number of commits to check', '10')
   .action((options) => validateRepo(parseInt(options.count)));
+
+program
+  .command('check')
+  .description('check project setup')
+  .action(checkSetup);
+
+program
+  .command('config [key] [value]')
+  .description('show or set configuration')
+  .action((key, value) => {
+    if (!key) showConfig();
+    else if (!value) console.log('❌ Value required');
+    else setConfig(key, value);
+  });
+
+program
+  .command('template')
+  .description('generate commit template')
+  .option('-t, --type <type>', 'commit type')
+  .option('-s, --scope <scope>', 'commit scope')
+  .action((options) => generateTemplate(options.type, options.scope));
+
+program
+  .command('history')
+  .description('analyze commit history')
+  .option('-n, --count <number>', 'number of commits to analyze', '20')
+  .action((options) => analyzeHistory(parseInt(options.count)));
 
 program
   .argument('[message]', 'commit message to lint')
