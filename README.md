@@ -93,6 +93,10 @@ Create `.commitrix.json` in your project root:
 | `commitrix config [key] [value]` | Show/set configuration |
 | `commitrix template --type <type>` | Generate commit template |
 | `commitrix history --count <n>` | Analyze commit history |
+| `commitrix help` | Show help information |
+| `commitrix lint <message>` | Lint specific message |
+| `commitrix fix <message>` | Auto-fix commit message |
+| `commitrix reset` | Reset config to defaults |
 
 ## 🏗️ CI/CD Integration
 

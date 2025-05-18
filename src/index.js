@@ -11,6 +11,10 @@ const { checkSetup } = require('./check');
 const { showConfig, setConfig } = require('./config-cmd');
 const { generateTemplate } = require('./template');
 const { analyzeHistory } = require('./history');
+const { showHelp } = require('./help');
+const { lintMessage } = require('./lint-cmd');
+const { autoFix } = require('./fix');
+const { resetConfig } = require('./reset');
 
 program.version('0.3.0');
 
@@ -79,6 +83,26 @@ program
   .description('analyze commit history')
   .option('-n, --count <number>', 'number of commits to analyze', '20')
   .action((options) => analyzeHistory(parseInt(options.count)));
+
+program
+  .command('help')
+  .description('show help information')
+  .action(showHelp);
+
+program
+  .command('lint <message>')
+  .description('lint specific commit message')
+  .action(lintMessage);
+
+program
+  .command('fix <message>')
+  .description('auto-fix commit message')
+  .action(autoFix);
+
+program
+  .command('reset')
+  .description('reset configuration to defaults')
+  .action(resetConfig);
 
 program
   .argument('[message]', 'commit message to lint')
