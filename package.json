@@ -4,25 +4,35 @@
   "description": "Git commit quality linter",
   "main": "src/index.js",
   "bin": {
-    "commitrix": "./src/index.js"
+    "commitrix": "src/index.js"
+  },
+  "bin": {
+    "commitrix": "src/index.js"
   },
   "scripts": {
     "test": "node test/test.js",
     "install-hook": "node src/install-hook.js",
     "prepublishOnly": "npm test"
   },
-  "keywords": ["git", "commit", "linter"],
+  "keywords": [
+    "git",
+    "commit",
+    "linter"
+  ],
   "author": "zmelliti",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/zmelliti/commitrix.git"
+    "url": "git+https://github.com/zmelliti/commitrix.git"
   },
   "homepage": "https://github.com/zmelliti/commitrix#readme",
   "bugs": {
     "url": "https://github.com/zmelliti/commitrix/issues"
   },
-  "files": ["src/", "README.md"],
+  "files": [
+    "src/",
+    "README.md"
+  ],
   "engines": {
     "node": ">=14.0.0"
   },
