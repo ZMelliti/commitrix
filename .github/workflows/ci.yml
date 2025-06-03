@@ -1,5 +1,14 @@
 name: CI
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      otp:
+        description: 'One-Time Password for npm'
+        required: false  # optional for regular token publish
 
 jobs:
   test:
@@ -25,6 +34,12 @@ jobs:
           node-version: '18'
           registry-url: 'https://registry.npmjs.org'
       - run: npm install
-      - run: npm publish --provenance --access public
+      - name: Publish to npm
+        run: |
+          if [ -n "${{ github.event.inputs.otp }}" ]; then
+            npm publish --provenance --access public --otp ${{ github.event.inputs.otp }}
+          else
+            npm publish --provenance --access public
+          fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
