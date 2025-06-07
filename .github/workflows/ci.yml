@@ -1,14 +1,5 @@
 name: CI
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-  workflow_dispatch:
-    inputs:
-      otp:
-        description: 'One-Time Password for npm'
-        required: false  # optional for regular token publish
+on: [push, pull_request]
 
 jobs:
   test:
