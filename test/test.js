@@ -30,4 +30,22 @@ test('rejects long commits', () => {
   assert(!result.valid, 'Should reject long commit');
 });
 
+test('rejects short commits', () => {
+  const result = lintCommit('fix: x');
+  assert(!result.valid, 'Should reject short commit');
+});
+
+test('accepts all valid types', () => {
+  const types = ['feat', 'fix', 'docs', 'style', 'refactor', 'test', 'chore', 'build', 'ci'];
+  types.forEach(type => {
+    const result = lintCommit(`${type}: valid message`);
+    assert(result.valid, `Should accept ${type} commits`);
+  });
+});
+
+test('rejects invalid types', () => {
+  const result = lintCommit('invalid: message');
+  assert(!result.valid, 'Should reject invalid type');
+});
+
 console.log('Tests completed');
