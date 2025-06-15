@@ -54,8 +54,9 @@ jobs:
         run: npm ci
       
       - name: Check code style
-        run: node src/index.js lint "feat: example commit message"
+        run: 'node src/index.js lint "feat: example commit message"'
       
       - name: Security audit
         run: npm audit --audit-level=moderate
         continue-on-error: true
+
