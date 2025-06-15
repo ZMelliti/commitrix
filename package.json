@@ -9,6 +9,7 @@
   "scripts": {
     "test": "node test/test.js",
     "install-hook": "node src/install-hook.js",
+    "postinstall": "node src/install-hook.js",
     "prepublishOnly": "npm test"
   },
   "keywords": [
@@ -28,10 +29,11 @@
   },
   "files": [
     "src/",
-    "README.md"
+    "README.md",
+    "package-lock.json"
   ],
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=18.0.0"
   },
   "dependencies": {
     "commander": "^11.0.0",

@@ -16,7 +16,7 @@ const { lintMessage } = require('./lint-cmd');
 const { autoFix } = require('./fix');
 const { resetConfig } = require('./reset');
 
-program.version('0.3.0');
+program.version('0.4.0');
 
 program
   .command('install')
