@@ -12,4 +12,4 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm test
-      - run: npx commitrix validate --count 5
+      - run: node src/index.js validate --count 5
