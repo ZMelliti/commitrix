@@ -15,6 +15,10 @@ const { showHelp } = require('./help');
 const { lintMessage } = require('./lint-cmd');
 const { autoFix } = require('./fix');
 const { resetConfig } = require('./reset');
+const { runDoctor } = require('./doctor');
+const { scanRepository } = require('./scan');
+const { runBenchmark } = require('./benchmark');
+const { generateReport } = require('./report');
 
 program.version('0.4.0');
 
@@ -103,6 +107,28 @@ program
   .command('reset')
   .description('reset configuration to defaults')
   .action(resetConfig);
+
+program
+  .command('doctor')
+  .description('run health check on project setup')
+  .action(runDoctor);
+
+program
+  .command('scan')
+  .description('scan repository for commit quality issues')
+  .option('-n, --count <number>', 'number of commits to scan', '100')
+  .action((options) => scanRepository(parseInt(options.count)));
+
+program
+  .command('benchmark')
+  .description('run performance benchmark')
+  .action(runBenchmark);
+
+program
+  .command('report')
+  .description('generate detailed quality report')
+  .option('-f, --format <format>', 'output format (console|json)', 'console')
+  .action((options) => generateReport(options.format));
 
 program
   .argument('[message]', 'commit message to lint')
