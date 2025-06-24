@@ -36,7 +36,10 @@ function generateReport(format = 'console') {
     });
     
     if (format === 'json') {
-      const filename = `commitrix-report-${Date.now()}.json`;
+      if (!fs.existsSync('reports')) {
+        fs.mkdirSync('reports');
+      }
+      const filename = `reports/commitrix-report-${Date.now()}.json`;
       fs.writeFileSync(filename, JSON.stringify(data, null, 2));
       console.log(`📄 Report saved to ${filename}`);
     } else {
