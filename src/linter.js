@@ -4,7 +4,7 @@ function lintCommit(message) {
   const config = loadConfig();
   const errors = [];
   
-  const typePattern = new RegExp(`^(${config.types.join('|')})(\\(.+\\))?: .+`);
+  const typePattern = new RegExp(`^(${config.types.join('|')})(!?)?(\\(.+\\))?: .+`);
   
   if (!typePattern.test(message)) {
     errors.push(`Must start with: ${config.types.join(', ')}`);

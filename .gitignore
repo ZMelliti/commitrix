@@ -41,6 +41,7 @@ Thumbs.db
 # Build outputs
 dist/
 build/
+reports/
 
 # Temporary files
 *.tmp

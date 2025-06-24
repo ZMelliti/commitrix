@@ -28,11 +28,29 @@ jobs:
       - name: Install dependencies
         run: npm ci
       
-      - name: Run tests
+      - name: Run unit tests
         run: npm test
       
-      - name: Validate commits
-        run: node src/index.js validate --count 5
+      - name: Test all commands
+        run: |
+          echo "Testing core commands..."
+          node src/index.js "feat: test message"
+          node src/index.js lint "feat: test message"
+          node src/index.js suggest "fix bug"
+          node src/index.js fix "fix bug"
+          echo "Testing analysis commands..."
+          node src/index.js doctor
+          node src/index.js scan --count 5
+          node src/index.js benchmark
+          node src/index.js report
+          node src/index.js stats
+          node src/index.js history --count 5
+          node src/index.js validate --count 5
+          echo "Testing config commands..."
+          node src/index.js check
+          node src/index.js config
+          node src/index.js template --type feat
+          node src/index.js help
       
       - name: Check package vulnerabilities
         run: npm audit --audit-level=high
