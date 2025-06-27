@@ -97,6 +97,51 @@ Create `.commitrix.json` in your project root:
 | `commitrix lint <message>` | Lint specific message |
 | `commitrix fix <message>` | Auto-fix commit message |
 | `commitrix reset` | Reset config to defaults |
+| `commitrix doctor` | Run health check on setup |
+| `commitrix scan --count <n>` | Scan repository for issues |
+| `commitrix benchmark` | Run performance benchmark |
+| `commitrix report --format <fmt>` | Generate quality report |
+
+## 📋 Examples
+
+### Health Check
+```bash
+$ commitrix doctor
+🩺 Running Commitrix Health Check...
+✅ Git repository detected
+✅ Configuration file found
+✅ Git hook installed
+🎉 Health check complete: 0 issue(s) found
+```
+
+### Repository Scan
+```bash
+$ commitrix scan --count 20
+🔍 Scanning last 20 commits...
+📊 Scan Results:
+✅ Valid commits: 18
+❌ Invalid commits: 2
+📈 Quality score: 90%
+```
+
+### Performance Benchmark
+```bash
+$ commitrix benchmark
+⚡ Running Commitrix Performance Benchmark...
+📊 Benchmark Results:
+🚀 Average per lint: 0.085ms
+📈 Throughput: 11,811 lints/second
+```
+
+### Quality Report
+```bash
+$ commitrix report
+📊 Commit Quality Report
+📈 Quality Score: 96%
+✅ Valid: 26 | ❌ Invalid: 1
+👥 Authors: 2
+🏷️ Top Types: chore(5), fix(6), feat(8)
+```
 
 ## 🏗️ CI/CD Integration
 
@@ -130,4 +175,8 @@ Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for gu
 
 ## 📝 License
 
-MIT © [zmelliti](https://github.com/zmelliti)
+MIT © [ZMelliti](https://github.com/zmelliti)
+
+---
+
+**Made ❤️ by for the community by [Zied MELLITI](https://github.com/zmelliti)**
