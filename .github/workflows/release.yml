@@ -28,9 +28,7 @@ jobs:
         run: npm test
       
       - name: Generate changelog
-        run: |
-          echo "# Changelog" > RELEASE_NOTES.md
-          git log --pretty=format:"- %s (%h)" $(git describe --tags --abbrev=0 HEAD^)..HEAD >> RELEASE_NOTES.md
+        run: node src/index.js changelog > RELEASE_NOTES.md
       
       - name: Create GitHub Release
         uses: actions/create-release@v1
