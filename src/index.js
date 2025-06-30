@@ -22,7 +22,7 @@ const { generateReport } = require('./report');
 const { releaseVersion, listReleases } = require('./release');
 const { generateChangelog } = require('./changelog');
 
-program.version('0.4.0');
+program.version('0.5.0');
 
 program
   .command('install')
