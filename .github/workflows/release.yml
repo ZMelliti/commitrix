@@ -46,3 +46,23 @@ jobs:
           draft: false
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Create PR to main
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: release/${{ github.ref_name }}
+          title: "chore: merge release ${{ github.ref_name }} to main"
+          body: |
+            ## Release Merge Request
+            
+            This PR merges the release tag `${{ github.ref_name }}` back to main branch.
+            
+            **Release Notes:**
+            - Tag: ${{ github.ref_name }}
+            - Release created successfully
+            - All tests passed
+            
+            Please review and merge to complete the release process.
+          assignees: zmelliti
+          reviewers: zmelliti
