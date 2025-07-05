@@ -19,8 +19,6 @@ const { runDoctor } = require('./doctor');
 const { scanRepository } = require('./scan');
 const { runBenchmark } = require('./benchmark');
 const { generateReport } = require('./report');
-const { releaseVersion, listReleases } = require('./release');
-const { generateChangelog } = require('./changelog');
 
 program.version('0.5.0');
 
@@ -131,27 +129,6 @@ program
   .description('generate detailed quality report')
   .option('-f, --format <format>', 'output format (console|json)', 'console')
   .action((options) => generateReport(options.format));
-
-program
-  .command('release <version>')
-  .description('create a new release with changelog')
-  .option('-p, --push', 'push to remote after creating release')
-  .action((version, options) => releaseVersion(version, options.push));
-
-program
-  .command('releases')
-  .description('list all releases')
-  .action(listReleases);
-
-program
-  .command('changelog')
-  .description('generate changelog from commits')
-  .option('-f, --from <tag>', 'start from tag')
-  .option('-t, --to <tag>', 'end at tag', 'HEAD')
-  .action((options) => {
-    const changelog = generateChangelog(options.from, options.to);
-    if (changelog) console.log(changelog);
-  });
 
 program
   .argument('[message]', 'commit message to lint')

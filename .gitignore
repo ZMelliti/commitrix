@@ -42,7 +42,6 @@ Thumbs.db
 dist/
 build/
 reports/
-releases/
 
 # Temporary files
 *.tmp
