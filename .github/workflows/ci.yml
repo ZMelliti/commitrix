@@ -46,6 +46,7 @@ jobs:
           node src/index.js stats
           node src/index.js history --count 5
           node src/index.js validate --count 5
+          node src/index.js search "test" --count 5
           echo "Testing config commands..."
           node src/index.js check
           node src/index.js config

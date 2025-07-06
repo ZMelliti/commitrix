@@ -19,6 +19,7 @@ const { runDoctor } = require('./doctor');
 const { scanRepository } = require('./scan');
 const { runBenchmark } = require('./benchmark');
 const { generateReport } = require('./report');
+const { searchCommits } = require('./search');
 
 program.version('0.5.0');
 
@@ -129,6 +130,22 @@ program
   .description('generate detailed quality report')
   .option('-f, --format <format>', 'output format (console|json)', 'console')
   .action((options) => generateReport(options.format));
+
+program
+  .command('search <query>')
+  .description('search commit messages')
+  .option('-t, --type <type>', 'filter by commit type')
+  .option('-a, --author <author>', 'filter by author')
+  .option('-n, --count <number>', 'number of commits to search', '50')
+  .option('-s, --since <date>', 'search commits since date')
+  .action((query, options) => {
+    searchCommits(query, {
+      type: options.type,
+      author: options.author,
+      count: parseInt(options.count),
+      since: options.since
+    });
+  });
 
 program
   .argument('[message]', 'commit message to lint')

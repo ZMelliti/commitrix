@@ -15,6 +15,7 @@ A powerful Git commit quality linter that enforces semantic commit conventions w
 - 📊 **Team Analytics** - Repository commit statistics
 - ⚙️ **Configurable Rules** - Customize for your team
 - 🚀 **CI/CD Ready** - Validate commits in pipelines
+- 🔍 **Commit Search** - Find commits by message, type, or author
 
 ## 🚀 Quick Start
 
@@ -60,6 +61,12 @@ commitrix suggest "fix bug"
 # View repository statistics
 commitrix stats
 
+# Search commit messages
+commitrix search "authentication"
+
+# Search by type and author
+commitrix search "bug" --type fix --author john
+
 # Validate recent commits (CI/CD)
 commitrix validate --count 10
 ```
@@ -101,6 +108,7 @@ Create `.commitrix.json` in your project root:
 | `commitrix scan --count <n>` | Scan repository for issues |
 | `commitrix benchmark` | Run performance benchmark |
 | `commitrix report --format <fmt>` | Generate quality report |
+| `commitrix search <query>` | Search commit messages |
 
 ## 📋 Examples
 
@@ -131,6 +139,26 @@ $ commitrix benchmark
 📊 Benchmark Results:
 🚀 Average per lint: 0.085ms
 📈 Throughput: 11,811 lints/second
+```
+
+### Commit Search
+```bash
+$ commitrix search "auth"
+🔍 Found 3 matching commits:
+
+a1b2c3d [feat] feat: add user authentication
+e4f5g6h [fix] fix: resolve auth token expiry
+i7j8k9l [docs] docs: update auth documentation
+
+📊 Search completed: 3 results
+
+$ commitrix search "bug" --type fix --count 10
+🔍 Found 2 matching commits:
+
+x1y2z3a [fix] fix: resolve login bug
+b4c5d6e [fix] fix: fix memory leak bug
+
+📊 Search completed: 2 results
 ```
 
 ### Quality Report
