@@ -4,6 +4,17 @@ function lintCommit(message) {
   const config = loadConfig();
   const errors = [];
   
+  // Skip validation for merge commits and automated commits
+  if (message.startsWith('Merge ') || 
+      message.startsWith('Revert ') ||
+      /^Merge [a-f0-9]{7,40} into [a-f0-9]{7,40}/.test(message)) {
+    return {
+      valid: true,
+      errors: [],
+      skipped: 'automated commit'
+    };
+  }
+  
   const typePattern = new RegExp(`^(${config.types.join('|')})(!?)?(\\(.+\\))?: .+`);
   
   if (!typePattern.test(message)) {

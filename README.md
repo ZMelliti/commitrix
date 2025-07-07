@@ -207,4 +207,4 @@ MIT © [ZMelliti](https://github.com/zmelliti)
 
 ---
 
-**Made ❤️ by for the community by [Zied MELLITI](https://github.com/zmelliti)**
+**Made with ❤️ for the community by [Zied MELLITI](https://github.com/zmelliti)**

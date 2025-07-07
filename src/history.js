@@ -20,12 +20,14 @@ function analyzeHistory(count = 20) {
       const result = lintCommit(commit);
       if (result.valid) {
         analysis.valid++;
-        const match = commit.match(/^(\w+)/);
-        if (match) {
-          const type = match[1];
-          analysis.types[type] = (analysis.types[type] || 0) + 1;
+        if (!result.skipped) {
+          const match = commit.match(/^(\w+)/);
+          if (match) {
+            const type = match[1];
+            analysis.types[type] = (analysis.types[type] || 0) + 1;
+          }
         }
-      } else {
+      } else if (!result.skipped) {
         analysis.invalid++;
         analysis.issues.push({
           index: index + 1,

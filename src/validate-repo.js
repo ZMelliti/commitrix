@@ -13,7 +13,7 @@ function validateRepo(count = 10) {
       result: lintCommit(commit)
     }));
     
-    const invalid = results.filter(r => !r.result.valid);
+    const invalid = results.filter(r => !r.result.valid && !r.result.skipped);
     
     console.log(`📋 Validated ${results.length} commits:`);
     console.log(`✅ Valid: ${results.length - invalid.length}`);

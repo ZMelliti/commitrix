@@ -16,7 +16,7 @@ function scanRepository(count = 100) {
       const result = lintCommit(message);
       if (result.valid) {
         valid++;
-      } else {
+      } else if (!result.skipped) {
         invalid++;
         issues.push({
           index: index + 1,
