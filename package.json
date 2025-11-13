@@ -7,9 +7,10 @@
     "commitrix": "src/index.js"
   },
   "scripts": {
-    "test": "node test/test.js",
+    "test": "jest --coverage",
     "install-hook": "node src/install-hook.js",
     "postinstall": "node src/install-hook.js",
+    "prepare": "npm run install-hook",
     "prepublishOnly": "npm test"
   },
   "keywords": [
@@ -38,5 +39,12 @@
   "dependencies": {
     "commander": "^14.0.1",
     "inquirer": "^12.9.6"
+  },
+  "devDependencies": {
+    "jest": "^29.6.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": ["src/**/*.js"]
   }
 }

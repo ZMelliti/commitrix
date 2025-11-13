@@ -21,7 +21,9 @@ const { runBenchmark } = require('./benchmark');
 const { generateReport } = require('./report');
 const { searchCommits } = require('./search');
 
-program.version('0.5.0');
+// Use package.json version to avoid drift
+const pkg = require('../package.json');
+program.version(pkg.version);
 
 program
   .command('install')

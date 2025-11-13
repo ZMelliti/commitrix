@@ -15,10 +15,11 @@ function suggestFix(message) {
     'doc': 'docs', 'readme': 'docs'
   };
   
-  let suggestedType = 'feat';
+  let suggestedType = config.types[0] || 'feat';
   for (const word of words) {
     if (typeMap[word]) {
-      suggestedType = typeMap[word];
+      const candidate = typeMap[word];
+      if (config.types.includes(candidate)) suggestedType = candidate;
       break;
     }
   }
@@ -34,10 +35,14 @@ function suggestFix(message) {
       .trim();
   }
   
+  if (!description || description.trim().length === 0) {
+    description = 'update';
+  }
+
   if (description.length > 50) {
     description = description.substring(0, 47) + '...';
   }
-  
+
   suggestions.push(`${suggestedType}: ${description}`);
   
   return suggestions;
